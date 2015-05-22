@@ -9,9 +9,9 @@ include_once ('php_display_fn/displayQueryList.php');
 		<title>EAV - Accueil</title>
 		<link rel="stylesheet" type="text/css" href="vue/style.css" />
 		<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="vue/jquery/css/ui-lightness/jquery-ui-1.10.2.custom.css" type='text/css'>
 		<script type="text/javascript" src="vue/jquery/js/jquery.min.js"></script>
 		<script type="text/javascript" src="vue/js/loadAnimation.js"></script>
-		<style type="text/css"></style>
 	</head>
 
 	<body>
@@ -26,7 +26,9 @@ include_once ('php_display_fn/displayQueryList.php');
 					<legend>Base de données</legend>
 					<form method="post" action="requete.php">
 						<?php displayDbList($arDbArray) ?>
-						<input class="special_btn" type="submit" value=">>" style="width: 5ex" />
+						<input class="special_btn" type="submit" value=">>" title="Se connecter à la base de données séléctionnée" style="width: 5ex" />
+						<input id='deco_bdd' name='deco_bdd' class="deco_btn" type="submit" value="X" title="Se déconnecter de la base de données courante" style="width: 5ex" />
+					</form>
 						<p>
 							Base de données courante : 
 							<?php
@@ -34,7 +36,7 @@ include_once ('php_display_fn/displayQueryList.php');
 								else echo '<i class="error">aucune</i>';
 							?>
 						</p>
-					</form>
+					
 				</fieldset>
 				<fieldset class="sous-champ" style="text-align:left">
 					<legend>Requêtes</legend>

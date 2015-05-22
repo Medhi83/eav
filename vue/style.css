@@ -62,7 +62,7 @@ legend.titre {
 	width:60%;
 	text-align:center;
 	margin-top: 80px;
-	min-height: 600px
+	min-height: 575px
 }
 
 #footer {
@@ -183,8 +183,8 @@ nav.top ul {
 	margin-top: 10px;
 }
 .deco_btn:hover {
-	background: #6bbad8;
-	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7), -1px 2px 20px rgba(255, 255, 255, 0.6) inset; 
+	background-color: #FF5656;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7), -1px 2px 20px rgba(0, 0, 0, 0.6) inset; 
 }
 
 #login_panel #submit {

@@ -7,7 +7,13 @@ include_once('isDbExists.php');
  * */
 function dbSetting()
 {
-	if (isset($_POST['db']))
+	if (isset($_POST['deco_bdd']) and $_POST['deco_bdd'] == 'X'){
+		unset($_SESSION['db']);
+		unset($_SESSION['query']);
+		header('Location:'.$_SERVER['REQUEST_URI']);
+		exit();
+	}
+	else if (isset($_POST['db']))
 	{
 		$sDb = htmlspecialchars($_POST['db']);
 		isDbExists($sDb);

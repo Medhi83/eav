@@ -2,6 +2,7 @@
 
 try
 {
+	
 	include_once('modele/dbSetting.php');
 	include_once('modele/createDbArray.php');
 	include_once('modele/createQueryArray.php');
@@ -11,7 +12,10 @@ try
 }
 catch (Exception $e)
 {
-	die("Erreur : " . $e->getMessage() . "<br /><a href=index.php>Retour à la page d'accueil</a>");
+	include_once('controleur/login_manager.php');
+	$erreur_sql = "Erreur : ".$e;
+	include_once('vue/SQLerror.php');
+	exit;
 }
 
 // On charge la gestion du login

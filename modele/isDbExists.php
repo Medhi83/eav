@@ -14,7 +14,9 @@ function isDbExists($db)
 		// Code erreur 1049: Unknown database
 		if ($e->getCode() === 1049)
 		{
-			die("Erreur : " . $e->getCode() . " -> La base de données " . $db . " n'existe pas. <br /><a href=index.php>Retour à la page d'accueil</a>");
+			$erreur_sql = 'La base de données '.$db."n'éxiste pas";
+			include_once('vue/errorSQL.php');
+			exit;
 		}
 		else
 		{
