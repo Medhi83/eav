@@ -1,0 +1,26 @@
+<?php
+
+function mdpChangerValidator($arrayVar){
+	include_once('varIsSet.php');
+
+	$errors_table = array();
+	$variables_obligatoires = array($arrayVar['pass_actuel'],
+				$arrayVar['pass_nouveau'],
+				$arrayVar['pass_confirm'],
+				$arrayVar['mail']);
+
+	if (!varIsSet($variables_obligatoires)){
+		array_push($errors_table, 'empty field');
+	}
+	if (strlen($arrayVar['pass_nouveau']) < 5 or strlen($arrayVar['pass_inscription']) > 20) {
+		array_push($errors_table, 'pwd size');
+	}
+	if ($arrayVar['pass_nouveau'] != $arrayVar['pass_confirm']) {
+		array_push($errors_table, 'pass not equal');
+	}
+	
+	if(empty($errors_table)) $result = true;
+	else	$result = false;
+
+	return array($result, $errors_table);
+}

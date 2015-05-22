@@ -1,0 +1,18 @@
+<?php
+
+//Ajoute un membre à la table membre
+function ajoute_membre($login, $pass, $mail){
+	global $bdd;
+	$login = (string) $login;
+	$pass = (string) $pass;
+	$mail = (string) $mail;
+
+	$req = $bdd->prepare('INSERT INTO membre VALUES("", :login, :pass, :mail,"","")');
+	$req->bindParam(':login', $login, PDO::PARAM_STR);
+	$req->bindParam(':pass', $pass, PDO::PARAM_STR);
+	$req->bindParam(':mail', $mail, PDO::PARAM_STR);
+	$req->execute();
+	$result = $req->fetch();
+
+	return $result;
+}

@@ -1,0 +1,37 @@
+<?php
+
+try {
+	include_once('modele/ajoute_membre.php');
+	include_once('modele/signInValidator.php');
+
+	// on teste si le visiteur a soumis le formulaire
+	if (isset($_POST['inscription']) && $_POST['inscription'] == "S'inscrire") {
+
+		// on teste l'existence de nos variables et si elles ne sont pas vide. On teste également si elles sont valides
+		$validator_result = signInValidator($_POST);
+		$login = $_POST['login_inscription'];
+		$salt = 'PeEa3B25ANZQ7PmFYMtJV2FuSDteaFZ4MzaMpXaZH2TucFG6';
+
+		if ($validator_result[0]) {
+			ajoute_membre($_POST['login_inscription'],
+					md5($_POST['pass_inscription'].$salt.$login),
+					$_POST['mail'],
+					$_POST['mysql_login'],
+					md5($_POST['mysql_pass'].$salt.$login));
+			session_start();
+			$_SESSION['login'] = $_POST['login_inscription'];
+			header('Location: index.php');
+			exit();
+		}
+	}
+ }
+catch (Exception $e)
+{
+	die("Erreur : " . $e->getMessage() . "<br /><a href=index.php>Retour à la page d'accueil</a>");
+}
+
+// On charge la gestion du login
+include_once('controleur/login_manager.php');
+
+// On affiche la page (vue)
+include_once('vue/inscription.php');

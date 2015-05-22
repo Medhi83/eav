@@ -1,0 +1,7 @@
+<?php
+
+// On charge la gestion du login
+include_once('controleur/login_manager.php');
+
+// On affiche la page (vue)
+include_once('vue/index.php');

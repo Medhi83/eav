@@ -1,0 +1,15 @@
+<?php
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* Ce document est un ensemble de fonctions permetant de verifier   *
+* si les valeurs d'un formulaire sont valide                       *
+*/ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+//Verifie si une variable est définie et si elle n'est pas vide
+
+function varIsSet($array_var){
+	foreach ($array_var as $var){
+		if (!isset($var) or empty($var)) return false;
+	}
+	return true;
+}

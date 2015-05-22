@@ -1,0 +1,14 @@
+<?php
+
+//Retourne Vrai si un nom d'utilisateur existe dans la table membre
+//include_once('connexion_sql.php');
+
+if(isset($_POST['action']) && $_POST['action'] == 'username_availability'){
+	$req = $bdd->prepare('SELECT COUNT(*) FROM membre WHERE login= :login');
+	$req->bindParam(':login', $_POST['username'], PDO::PARAM_STR);
+	$req->execute();
+	$result = $req->fetch();
+
+	echo ($result[0]);
+}
+?>

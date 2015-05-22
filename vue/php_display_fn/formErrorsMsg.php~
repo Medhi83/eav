@@ -1,0 +1,16 @@
+<?php
+
+function formErrorsMsg($errors){
+	echo '<div class="error_field"><ul>';
+
+	if(in_array('empty field', $errors)) echo "<li>Au moins un champ obligatoire est vide</li>";
+	if(in_array('login to short', $errors)) echo "<li>Le nom d'utilisateur doit contenir au moins 3 caractères</li>";
+	if(in_array('login exist', $errors)) echo "<li>Le nom d'utilisateur existe déja</li>";	
+	if(in_array('login special chars', $errors)) echo "<li>Les caractères spéciaux sont interdits</li>";
+	if(in_array('pwd size', $errors)) echo "<li>Le mot de passe doit être compris entre 5 et 20 caractères</li>";
+	if(in_array('pwd equal', $errors)) echo "<li>Les deux mots de passe sont différents</li>";
+	if(in_array('email invalid', $errors)) echo "<li>L'adresse e-mail est invalide</li>";
+	if(in_array('pwd invalid', $errors)) echo "<li>L'adresse e-mail est invalide</li>";
+
+	echo '</ul></div>';
+}

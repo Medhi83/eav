@@ -1,0 +1,42 @@
+<?php
+
+function signInValidator($arrayVar){
+	include_once('varIsSet.php');
+	include_once('membre_existe.php');
+	
+
+
+	$errors_table = array();
+	$variables_obligatoires = array($arrayVar['login_inscription'],
+				$arrayVar['pass_inscription'],
+				$arrayVar['pass_confirm'],
+				$arrayVar['mail']);
+
+	if (!varIsSet($variables_obligatoires)){
+		array_push($errors_table, 'empty field');
+	}
+	
+	if (strlen($arrayVar['login_inscription']) < 3) {
+		array_push($errors_table, 'login to short');
+	}
+	if (strlen($arrayVar['pass_inscription']) < 5 or strlen($arrayVar['pass_inscription']) > 20) {
+		array_push($errors_table, 'pwd size');
+	}
+	if ($arrayVar['pass_inscription'] != $arrayVar['pass_confirm']) {
+		array_push($errors_table, 'pass not equal');
+	}
+	if (!preg_match('/^[a-zA-Z0-9_-éèêëôöïîûüù]+$/',$arrayVar['login_inscription'])) {
+		array_push($errors_table, 'login special chars');
+	}
+	if (!filter_var($arrayVar['mail'], FILTER_VALIDATE_EMAIL)) {
+		array_push($errors_table, 'email invalid');
+	}
+	if (membre_existe($_POST['login_inscription'])){
+		array_push($errors_table, 'login exist');
+	}
+	
+	if(empty($errors_table)) $result = true;
+	else	$result = false;
+
+	return array($result, $errors_table);
+}

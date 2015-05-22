@@ -1,0 +1,17 @@
+<?php
+
+//Retourne Vrai si un nom d'utilisateur existe dans la table membre
+include_once('../modele/connexion_sql.php');
+$login = $_POST['username'];
+
+if(isset($_POST['action']) && $_POST['action'] == 'username_availability'){
+	include_once('../modele/membre_existe.php');
+	if(membre_existe($login)) {
+		$result = 0;
+	}
+	else {
+		$result = 1;
+	}
+	echo($result);
+}
+?>

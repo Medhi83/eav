@@ -1,0 +1,238 @@
+body {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 0.8em;
+	margin: 0 auto;
+}
+
+span {
+	display: inline-block;
+	width: 30ex;
+	text-align: left;
+	text-align: justify;
+}
+
+.sous-champ {
+	width: 768px;
+	margin: 2em auto 0px;
+	padding: 20px;
+}
+.info {
+	color: rgb(72, 168, 255);
+	background-color: rgba(66, 171, 212, 0.23);
+	padding: 15px 10px 15px 50px;
+	margin: 10px 0px;
+	border: 1px solid rgba(66, 171, 212, 0.24);
+	border-radius: 10px;
+}
+.error_field {
+	color: #F00;
+	background-color: rgba(251, 0, 0, 0.2);
+	padding: 15px 10px 15px 50px;
+	margin: 10px auto;
+	border: 1px solid rgba(242, 12, 12, 0.2);
+	border-radius: 10px;
+	width: 735px;
+	text-align: left;
+}
+
+legend {
+	font-size: large;
+}
+
+legend.titre {
+	background-color: rgba(66, 171, 212, 0.53);
+	border-radius: 5px;
+	padding: 5px 4em;
+	color: white;
+}
+
+#inscription {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	text-align: left;
+}
+
+.error {color:red}
+
+.success {color:green}
+
+#page {
+	margin-left: auto;
+	margin-right: auto;
+	width:60%;
+	text-align:center;
+	margin-top: 80px;
+	min-height: 600px
+}
+
+#footer {
+	margin: 50px auto;
+}
+
+a {
+	text-decoration: none;
+}
+
+.logo {
+    float: left;
+    height: 30px;
+    text-align: center;
+    margin-left: 2.5%;
+    margin-top: 2px;
+}
+
+nav.top ul {
+	padding: 0;
+	margin: 0 auto;
+	list-style-type: none;
+	color: white;
+}
+
+.menu_btn {
+	display: block;
+	float: left;   
+	width: 140px;
+	height: 15px;
+	text-align: center;
+	padding: 10px;
+	color: white;
+}
+
+.menu_btn:hover {
+	background: gray;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7), -1px 2px 20px rgba(255, 255, 255, 0.6) inset; 
+}
+
+.slide_btn:hover {
+	background: gray;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7), -1px 2px 20px rgba(255, 255, 255, 0.6) inset; 
+}
+
+#login_panel {
+	box-shadow: -1px 5px 5px 1px rgba(0, 0, 0, 0.7), -1px -34px 20px rgba(255, 255, 255, 0.6) inset;
+	text-align: center;
+	width: 140px;
+	margin: 0 auto;
+	padding: 10px;
+	background: #cccccc;
+	display: none; //état initial du panneau : caché
+}
+
+.slide_btn {
+	width: 140px;
+	height: 15px;
+	margin: 0 auto;
+	padding: 10px;
+	text-align: center;
+	display: block;
+	color: white;
+}
+
+.slide {
+	margin: 0;
+	padding: 0;
+}
+
+#menu {
+	display: block;
+	height: 35px;
+	width: 100%;
+	background: #6bbad8;
+	position: fixed;
+	top: 0;
+	z-index: 1;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
+            -1px 2px 20px rgba(255, 255, 255, 0.6) inset;
+}
+
+#connexion {
+	float: right;
+	margin-right: 5%;
+}
+
+.special_btn {
+	background: gray;
+	padding: 8px 4px;
+	border: none;
+	border-radius: 5px;
+	border-radius: 5px;
+	font-size: 1.0em;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+	margin: 0 auto;
+	margin-top: 10px;
+	width: 150px;
+}
+.special_btn:hover {
+	background: #6bbad8;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7), -1px 2px 20px rgba(255, 255, 255, 0.6) inset; 
+}
+
+.deco_btn {
+	background: gray;
+	padding: 8px 4px;
+	border: none;
+	border-radius: 5px;
+	border-radius: 5px;
+	font-size: 1.0em;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+.deco_btn:hover {
+	background: #6bbad8;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7), -1px 2px 20px rgba(255, 255, 255, 0.6) inset; 
+}
+
+#login_panel #submit {
+	background: gray;
+	padding: 8px 4px;
+	border: none;
+	border-radius: 5px;
+	border-radius: 5px;
+	font-size: 1.2em;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+#login_panel #submit:hover {
+	background: #6bbad8;
+}
+
+#footer ul li {
+	display: inline;
+	padding-left:50px;
+	padding-right:50px;
+}
+
+#username_avail_result {
+	margin-left:5px;
+}
+.password_strength {
+	display: inline-block;
+	width: 236px;
+	text-align: center;
+	color: #333;
+	font-size: 12px;
+	font-weight: bold;
+	margin: auto;
+}
+/* Indicateur de force du mot de passe*/
+.password_strength.weak{
+	background:#e84c3d;
+}
+.password_strength.normal{
+	background:#f1c40f;
+}
+.password_strength.strong{
+	background:#27ae61;
+}
+.password_strength.verystrong{
+	background:#2dcc70;
+	color:#FFF;
+}

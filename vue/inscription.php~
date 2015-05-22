@@ -1,0 +1,181 @@
+<?php include_once('php_display_fn/formErrorsMsg.php');?>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EAV - Inscription</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="vue/style.css" />
+		<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" src="vue/jquery/js/jquery.min.js"></script>
+		<script type="text/javascript" src="vue/jquery/js/jquery.validate.js"></script>
+		<script type="text/javascript" src="vue/jquery/js/jquery.additional-methods.min.js"></script>
+
+		<style type="text/css">
+			#username_avail_result {margin-left:5px;}
+			.password_strength {
+				display: inline-block;
+				width: 236px;
+				text-align: center;
+				color: #333;
+				font-size: 12px;
+				font-weight: bold;
+				margin: auto;
+			}
+			/* Password strength indicator classes weak, normal, strong, verystrong*/
+			.password_strength.weak{
+				background:#e84c3d;
+			}
+			.password_strength.normal{
+				background:#f1c40f;
+			}
+			.password_strength.strong{
+				background:#27ae61;
+			}
+			.password_strength.verystrong{
+				background:#2dcc70;
+				color:#FFF;
+			}
+		</style>
+		
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#form1').validate({
+					rules: {
+						login_inscription: { required:true },
+						pass_inscription: { required:true, minlength : 5, maxlength:20},
+						pass_confirm: { required:true, equalTo : "#pass"},
+						mail: { required:true, email:true }
+					},
+					messages: {
+						login_inscription: {
+							required: " Ce champ est obligatoire"
+						},
+						pass_inscription: {
+							required: " Ce champ est obligatoire",
+							minlength: " Ce champ doit contenir plus de 4 caractères",
+							maxlength: " Ce champ doit contenir au maximum 20 caractères"
+						},
+						pass_confirm: {
+							required: " Ce champ est obligatoire",
+							equalTo : " Les deux mots de passe doivent être identiques"
+						},
+						mail: {
+							required: " Ce champ est obligatoire",
+							email: " Ceci n'est pas une adresse e-mail valide"
+						}
+					}
+				});
+				$('#login').keyup(function(){ // Verifie le login pendant la frappe
+					var Username = $(this).val(); // Déclaration des variables
+					var UsernameAvailResult = $('#username_avail_result'); // Déclaration de l'objet html qui retourne le message
+					if(Username.length > 2 && (/^[a-zA-Z0-9_-éèêëôöïîûüù]+$/.test(Username))) { // check if greater than 2 (minimum 3)
+						 // Animation de Chargement
+						UsernameAvailResult.html('<img src="vue/img/load.gif" alt="Chargement.." style="width: 32px;padding-bottom: 2px;">');
+						var UrlToPass = 'action=username_availability&username='+Username;
+						$.ajax({ // Envoie le login rentré au fichier verifie_membre.php avec Ajax en methode POST
+						type : 'POST',
+						data : UrlToPass,
+						url  : 'controleur/verifie_membre.php',
+						success: function(responseText){ // Call back: récupère le resultat de la requete verifie_membre.php
+							if(responseText == 0){
+								UsernameAvailResult.html("<label class='success'>Nom d'utilisateur disponible!</label>");
+							}
+							else if (responseText > 0){
+								UsernameAvailResult.html("<label class='error'>Nom d'utilisateur déjà enregistré</label>");
+							}
+							else{
+								alert('Il y a un problème avec la requête SQL!');
+							}
+						}
+						});
+					}else if (Username.length < 3){
+						UsernameAvailResult.html("<label class='error'>Ce champ doit contenir plus de 2 caractères</label>");
+					}
+					else if (/^[a-zA-Z0-9_-éèêëôöïîûüù]+$/.test(Username) == false){
+						UsernameAvailResult.html("<label class='error'>Les carctères spéciaux ne sont pas autorisés</label>");
+					}
+					if(Username.length == 0) {
+						UsernameAvailResult.html('');
+					}
+				});
+	
+				$('#pass, #login').keydown(function(e) { // Interdit les espaces dans le login et le password
+					if (e.which == 32) {
+						return false;
+			  		}
+				});
+				$('#pass').keyup(function() { // As same using keyup function for get user action in input
+					var PasswordLength = $(this).val().length; // Get the password input using $(this)
+					var PasswordStrength = $('#password_strength'); // Get the id of the password indicator display area
+		
+					if(PasswordLength <= 0) { // Check is less than 0
+						PasswordStrength.html(''); // Empty the HTML
+						PasswordStrength.removeClass('normal weak strong verystrong'); //Remove all the indicator classes
+					}
+					if(PasswordLength > 0 && PasswordLength < 5) { // If string length less than 4 add 'weak' class
+						PasswordStrength.html('Faible');
+						PasswordStrength.removeClass('normal strong verystrong').addClass('weak');
+					}
+					if(PasswordLength > 5 && PasswordLength < 8) { // If string length greater than 4 and less than 8 add 'normal' class
+						PasswordStrength.html('Correct');
+						PasswordStrength.removeClass('weak strong verystrong').addClass('normal');			
+					}	
+					if(PasswordLength >= 8 && PasswordLength < 12) { // If string length greater than 8 and less than 12 add 'strong' class
+						PasswordStrength.html('Fort');
+						PasswordStrength.removeClass('weak normal verystrong').addClass('strong');
+					}
+					if(PasswordLength >= 12) { // If string length greater than 12 add 'verystrong' class
+						PasswordStrength.html('Très fort');
+						PasswordStrength.removeClass('weak normal strong').addClass('verystrong');
+					}
+				});		
+			});
+		</script>
+	</head>
+
+	<body>
+		<!-- Menu -->
+		<?php include ('top_menu.php')?>
+		<!-- Fin du Menu -->
+	
+		<div id="page" style="width: 60%">
+			<fieldset style="padding-bottom:50px; width: 100%;">
+			<legend class="titre">Inscription</legend>
+			<form id="form1" action="inscription.php" method="post">
+				<div id="inscription">
+					<?php if(isset($validator_result[1])) formErrorsMsg($validator_result[1]); ?>
+					<fieldset class="sous-champ">
+					<legend>Identité</legend>
+					<span>Nom d'utilisateur : </span>
+					<input type="text" id="login" name="login_inscription" value="<?php if (isset($_POST['login_inscription'])) echo htmlentities(trim($_POST['login_inscription'])); ?>"><label class="username_avail_result" id="username_avail_result"></label><br />
+					
+					<span>Mot de passe : </span>
+					<input type="password"  id="pass" name="pass_inscription" value="<?php if (isset($_POST['pass_inscription'])) echo htmlentities(trim($_POST['pass_inscription'])); ?>"><br />
+					<span></span>
+					<div class="password_strength" id="password_strength"></div><br />
+					<span>Confirmation du mot de passe : </span>
+					<input type="password" name="pass_confirm"><br />
+					<span>Email : </span>
+					<input type="email" name="mail" value="<?php if (isset($_POST['mail'])) echo htmlentities(trim($_POST['mail'])); ?>">
+					</fieldset>
+					<fieldset class="sous-champ">
+					<legend>Base de données locale (Aix-Marseille Université)</legend>
+					<span>Identifiant Mysql : </span>
+					<input type="text" name="mysql_login" value="<?php if (isset($_POST['mysql_login'])) echo htmlentities(trim($_POST['mysql_login'])); ?>"><br />
+					<span>Mot de passe Mysql : </span>
+					<input type="password" name="mysql_pass" value="<?php if (isset($_POST['mysql_pass'])) echo htmlentities(trim($_POST['mysql_pass'])); ?>"><br />
+					<div class="info">Ce champ facultatif est reservé aux étudiants et aux personnels de l'AMU. Il vous permettra de sauvegarder vos requêtes Ensembl sur votre base de données locale si elle est activée. Si ce n'est pas le cas, consultez la DOSICALU.</div>
+					</fieldset>
+				</div>
+				<input class="special_btn" type="submit" name="inscription" value="S'inscrire">
+			</form>
+			</fieldset>
+		</div>
+		
+		<!-- Pied de page -->
+		<?php include ('footer.php')?>
+		<!-- Fin du pied de page -->
+	</body>
+</html>

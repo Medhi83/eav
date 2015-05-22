@@ -1,0 +1,19 @@
+<?php
+
+try
+{
+	include_once('modele/choix_db.php');
+	$arDbArray = createDbArray();
+	$arQueryArray = createQueryArray();
+}
+catch (Exception $e)
+{
+	die("Erreur : " . $e->getMessage() . "<br /><a href=accueil.php>Retour à la page d'accueil</a>");
+}
+
+//On charge la gestion du login
+include_once('controleur/login_manager.php');
+
+//Affichage (vue)
+include_once('vue/choix_db.php');
+?>

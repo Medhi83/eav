@@ -1,0 +1,26 @@
+<?php
+
+function mailChangerValidator($arrayVar){
+	include_once('varIsSet.php');
+	include_once('nb_membre.php');
+	$login = $_SESSION['login'];
+	$salt = 'PeEa3B25$ANZQ_7PmFYMtJV#2FuS*DteaFZ4MézaMpXa-ZH2TucFG6';
+
+	$errors_table = array();
+	$variables_obligatoires = array($arrayVar['pass_actuel'], $arrayVar['mail']);
+
+	if (!varIsSet($variables_obligatoires)){
+		array_push($errors_table, 'empty field');
+	}
+	if (!filter_var($arrayVar['mail'], FILTER_VALIDATE_EMAIL)) {
+		array_push($errors_table, 'email invalid');
+	}
+	if(nb_membre($login, md5($arrayVar['pass_actuel'].$salt.$login))[0] != 1){
+		array_push($errors_table, 'pass invalid');
+	}
+	
+	if(empty($errors_table)) $result = true;
+	else	$result = false;
+
+	return array($result, $errors_table);
+}
