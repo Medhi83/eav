@@ -8,7 +8,7 @@
 function displayArrayResults($array_results)
 {
 	echo '<table id="results" class="display">';
-	$i = 1;
+	$i = 0;
 
 	echo '<thead><tr>';
 	echo '<th>n°</th>';
@@ -23,8 +23,8 @@ function displayArrayResults($array_results)
 	foreach ($array_results as $key => $value) {
 
 		echo '<tr>';
-		echo '<td>', $i, '</td>';
-		foreach ($array_results[$i-1] as $key => $value) {
+		echo '<td>', ($i + 1), '</td>';
+		foreach ($array_results[$i] as $key => $value) {
 			if (gettype($key) == 'string') {
 				echo '<td>', $value, '</td>';
 			}
@@ -34,7 +34,7 @@ function displayArrayResults($array_results)
 	}
 	echo '</tbody></table>';
 	
-	if ($i === 1)
+	if ($i === 0)
 	{
 		echo "Cette requête n'a donné aucun résultat";
 	}

@@ -7,6 +7,8 @@ try
 	include_once('modele/createQueries.php');
 	include_once('modele/querySetting.php');
 	include_once('modele/parseQueryChoice.php');
+	include_once('modele/onlyStrKeys.php');
+
 	dbSetting();
 	querySetting();
 	$arDbArray = createDbArray();
@@ -15,20 +17,8 @@ try
 	$oReponse = parseQueryChoice($oConnexion);
 	$array_results = $oReponse->fetchAll();
 	
+	$_SESSION["current_results"] = onlyStrKeys($array_results);
 	
-	
-	//retire les clés qui ne sont pas des chaines de caractères.
-	$arResults = array();
-	$i=0;
-	foreach ($array_results as $arDonnees)
-	{
-		foreach ($arDonnees as $key => $element){
-			if (gettype($key) == 'string') {
-				$arResults[$i][$key] = $element;
-			}
-		}
-		$i += 1;
-	}
 }
 catch (Exception $e)
 {

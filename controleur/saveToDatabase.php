@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 include_once('../modele/createTable.php');
 include_once('../modele/insertData.php');
 
@@ -20,10 +21,10 @@ if (isset($_POST['action']) and $_POST['action'] == 'save'){
 				//si non: On annule (ou retour au choix du non)
 
 			//si non: On crée la table
-			createTable($_POST["results"], $_POST["table_name"]);
+			createTable($_SESSION["current_results"], $_POST["table_name"]);
 
 		//On ajoute les données dans la table!
-		insertData($_POST["results"],$_POST["table_name"]);
+		insertData($_SESSION["current_results"],$_POST["table_name"]);
 		
 		
 		echo 0; // Enfin on retourne zero si tout s'est bien passé =)

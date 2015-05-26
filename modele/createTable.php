@@ -13,5 +13,5 @@ function createTable($array_results, $tableName){
 	//Tout les champs sont des variables 'TEXT' sauf le 1er (id)
 	$columns = implode(" TEXT, ", $keys).' TEXT';
 	
-	$req = $bdd->exec("CREATE TABLE $tableName (id INT PRIMARY KEY NOT NULL, $columns)");
+	$req = $bdd->exec("CREATE TABLE $tableName (id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT, $columns)");
 }
