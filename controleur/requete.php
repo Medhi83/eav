@@ -5,7 +5,7 @@ try
 	
 	include_once('modele/dbSetting.php');
 	include_once('modele/createDbArray.php');
-	include_once('modele/createQueryArray.php');
+	include_once('modele/createQueries.php');
 	dbSetting();
 	$arDbArray = createDbArray();
 	$arQueryArray = createQueryArray();

@@ -11,7 +11,6 @@ include_once ('php_display_fn/displayQueryList.php');
 		<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="vue/jquery/css/ui-lightness/jquery-ui-1.10.2.custom.css" type='text/css'>
 		<script type="text/javascript" src="vue/jquery/js/jquery.min.js"></script>
-		<script type="text/javascript" src="vue/js/loadAnimation.js"></script>
 	</head>
 
 	<body>
@@ -38,10 +37,11 @@ include_once ('php_display_fn/displayQueryList.php');
 						</p>
 					
 				</fieldset>
-				<fieldset class="sous-champ" style="text-align:left">
+				<fieldset class="sous-champ">
 					<legend>Requêtes</legend>
 					<form method="post" action="resultat.php" onsubmit="iconeChargement()">
 					<?php displayQueryList($arQueryArray); ?>
+					<input type="text" id="queryChoice" name="choix1" placeholder="Tapez le stable_id (ex: blablabla) du gène ou transcrit désiré."/>
 				</fieldset>
 				<input  class="special_btn" type="submit" value="Lancer" /><br />
 				<div id="chargement" style="margin:10px auto"><img src="vue/img/load.gif" alt="Chargement.."></div>
@@ -60,21 +60,27 @@ include_once ('php_display_fn/displayQueryList.php');
 		function iconeChargement(){
 			$('#chargement').show();		
 		}
-		function displayArea(self)
+		//Change le nom du champ de la requête en fonction de la requete sélectionnée
+		function changeInputText(self)
 		{
-			var radio = document.getElementsByName(self.name);
-			for (i_radio = 0; i_radio < radio.length; i_radio++)
-			{
-				if (radio[i_radio] === self)
-				{
-					document.getElementsByName(radio[i_radio].value)[0].style.display = 'inline-block';
-				}
-				else
-				{
-					document.getElementsByName(radio[i_radio].value)[0].style.display = 'none';
-				}
+			var optionList = self;
+			var userChoice = optionList.options[optionList.selectedIndex].value;
+			var inputText = document.getElementById('queryChoice');
+			inputText.setAttribute('name', userChoice);
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					inputText.placeholder = xmlhttp.responseText;
+			  	}
 			}
+			xmlhttp.open("GET", "modele/getQueryTip.php?query=" + userChoice, true);
+			xmlhttp.send();
 		}
 		</script>
+		<script>
+		//La taille du champ requête est ajustée à la taille de l'élément select.
+		document.getElementById('queryChoice').style.width = (document.getElementById('queryList').offsetWidth - 8) + 'px';
+		</script>
+		
 	</body>
 </html>

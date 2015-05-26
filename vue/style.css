@@ -11,6 +11,13 @@ span {
 	text-align: justify;
 }
 
+th, td { white-space: nowrap; }
+
+div.dataTables_wrapper {
+	width: 800px;
+	margin: 0 auto;
+}
+
 .sous-champ {
 	width: 768px;
 	margin: 2em auto 0px;

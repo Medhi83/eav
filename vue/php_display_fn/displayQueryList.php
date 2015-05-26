@@ -7,9 +7,15 @@ include_once('displayQueryChoice.php');
  * */
 function displayQueryList($arQueryArray)
 {
+	?>
+	<select style="font-size: large;padding: 6px;" id=queryList name=query onclick="changeInputText(this);" >
+	<?php
 	foreach ($arQueryArray as $choice => $sentance)
 	{
 		displayQueryChoice($choice, $sentance);
 	}
+	?>
+	</select>
+	<?php
 }
 ?>
