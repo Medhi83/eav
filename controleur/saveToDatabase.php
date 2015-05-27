@@ -3,14 +3,14 @@
 session_start();
 include_once('../modele/createTable.php');
 include_once('../modele/insertData.php');
+include_once('../modele/connexion_sql_perso.php');
 
 //Gère et appel la fonction pour enregistrer les résultats dans la base de données de l'utilisateur connecté
 
 if (isset($_POST['action']) and $_POST['action'] == 'save'){
 	try {
 		
-		include_once('../modele/connexion_sql_perso.php');
-		
+		$bdd = connexion_sql_perso($_SESSION['login'], $_SESSION['pass']);
 	
 		//On regarde si une table avec ce nom existe déjà
 
