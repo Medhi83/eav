@@ -16,7 +16,7 @@
 		<!-- Fin du Menu -->
 		
 		<div id="page">
-			<img src="vue/img/Logo-eav.png" alt="EAV" width="600px" style="margin-top:80px;">
+			<img src="vue/img/Logo-eav.png" alt="EAV" width="600" style="margin-top:80px;">
 			<p style = "font-family: 'Orbitron', sans-serif;"><b>Ensembl . Alternative . View</b></p>
 			<form method="post" action="requete.php">
 		    		<?php displayDbList($arDbArray) ?><br />

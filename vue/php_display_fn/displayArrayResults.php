@@ -5,9 +5,9 @@
  * @param  Array $Array_results tableau contenant les résultats de la requête.
  * */
 
-function displayArrayResults($array_results)
+function displayArrayResults($array_results, $table_id = 'results')
 {
-	echo '<table id="results" class="display">';
+	echo '<table id="'.$table_id.'" class="display">';
 	$i = 0;
 
 	echo '<thead><tr>';
@@ -28,7 +28,7 @@ function displayArrayResults($array_results)
 			if (gettype($key) == 'string') {
 				echo '<td>', $value, '</td>';
 			}
-		}		
+		}
 		echo '</tr>';
 		$i += 1;
 	}

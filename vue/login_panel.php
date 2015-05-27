@@ -1,3 +1,13 @@
+<div id="connexion_error">
+<?php
+if (isset($erreur_connexion)) {
+	echo '<div style = "display: inline-block; margin-right: 5px; padding: 5px">';
+	echo '<img src="vue/img/warning.png" Alt="Erreur" style="width:20px" />';
+	echo '</div>';
+	echo '<i>', $erreur_connexion,'</i>';
+}
+?>
+</div>
 <div id="connexion">
 	<p class="slide"><a href="#" class="slide_btn">Se connecter</a></p>
 	
@@ -5,7 +15,7 @@
 
 		<form name="login_form" id="login_form" method="post" action=<?php echo $_SERVER['PHP_SELF']?>>
 			
-			<label for="username">Nom d'utilisateur:</label>
+			<label for="username">Identifiant:</label>
 			<input type="text" name="login" id="username" value="<?php if (isset($_POST['login'])) echo htmlentities(trim($_POST['login'])); ?>" size="10" /><br />
 			
 			<label for="password">Mot de passe:</label>
@@ -16,8 +26,4 @@
 		</form>	
 	</div>
 </div>
-<?php
-if (isset($erreur)) echo '<i style="color: #a30000;float: right; margin-top: 10px; margin-right: 10px;">',
-				$erreur,'</i><img src="vue/img/warning.png" style="width:20px; margin: 5px; float:right">';
-?>
 

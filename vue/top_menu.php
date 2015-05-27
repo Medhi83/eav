@@ -23,12 +23,7 @@
 		include_once ("login_panel.php");
 	}
 	else {
-		echo '<div id="connexion">
-			<p class="slide"><a href="#" class="slide_btn">', htmlentities(trim($_SESSION['login'])), '</a></p>
-			<div id="login_panel">
-				<p><a href="deconnexion.php" class="deco_btn">Se déconnecter</a></p>
-			</div>
-		</div>';
+		include_once ("connected_panel.php");
 	}
 ?>
 </div>

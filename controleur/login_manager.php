@@ -16,9 +16,15 @@ if (isset($_POST['connexion']) and $_POST['connexion'] == 'Connexion') {
 			header('Location:'.$_SERVER['REQUEST_URI']);
 			exit();
 		}
-		catch (Exception $erreur_connexion) {
+		catch (Exception $e) {
 			//impossible de se connecter! (afficher un message d'erreur)
+			
+			if ($e->getCode() == 1045) $erreur_connexion = 'Connexion refusé! identifiant ou mot de passe incorrect';
+			else $erreur_connexion = $e->getMessage(); 
 		}
+	}
+	else {
+		 $erreur_connexion = 'Au moins un des champs est vide';
 	}
 }
 else if (isset($_SESSION['login'])) {
@@ -27,7 +33,8 @@ else if (isset($_SESSION['login'])) {
 	try {
 		$bdd = connexion_sql_perso($_SESSION['login'], $_SESSION['pass']);
 	}
-	catch (Exception $erreur_connexion) {
+	catch (Exception $e) {
 		//impossible de maintenir la connexion ! (afficher un message d'erreur)
+		$erreur_connexion = $e->getMessage();
 	}
 }

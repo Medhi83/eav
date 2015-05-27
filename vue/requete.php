@@ -37,14 +37,15 @@ include_once ('php_display_fn/displayQueryList.php');
 						</p>
 					
 				</fieldset>
-				<fieldset class="sous-champ">
-					<legend>Requêtes</legend>
-					<form method="post" action="resultat.php" onsubmit="iconeChargement()">
-					<?php displayQueryList($arQueryArray); ?>
-					<input type="text" id="queryChoice" name="choix1" placeholder="Tapez le stable_id (ex: blablabla) du gène ou transcrit désiré."/>
-				</fieldset>
-				<input  class="special_btn" type="submit" value="Lancer" /><br />
-				<div id="chargement" style="margin:10px auto"><img src="vue/img/load.gif" alt="Chargement.."></div>
+				<form method="post" action="resultat.php" onsubmit="iconeChargement()">
+					<fieldset class="sous-champ">
+						<legend>Requêtes</legend>				
+						<?php displayQueryList($arQueryArray); ?>
+						<input type="text" id="queryChoice" name="choix1" placeholder="Tapez le stable_id (ex: AAEL010576) du gène ou transcrit désiré."/>
+					</fieldset>
+
+					<input  class="special_btn" type="submit" value="Lancer" /><br />
+					<div id="chargement" style="margin:10px auto"><img src="vue/img/load.gif" alt="Chargement.."></div>
 				</form>
 				
 			</fieldset>
