@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="vue/style.css" />
 		<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 		<script type="text/javascript" src="vue/jquery/js/jquery.min.js"></script>
+		<script type="text/javascript" src="vue/jquery/js/haut_page.js"></script>
 		<style type="text/css"></style>
 	</head>
 

@@ -10,6 +10,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
 		<script type="text/javascript" src="vue/jquery/js/jquery.min.js"></script>
+		<script type="text/javascript" src="vue/jquery/js/haut_page.js"></script>
 		<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
 	</head>
 

@@ -5,3 +5,5 @@
 		<li><a href="index.php">Accueil</a> | <a href="requete.php">Requête</a> | <a href="apropos.php">A propos</a> | <a href="contact.php">contact</a></li>
 	</ul>
 </div>
+
+<img id="page_up" type="button" src="vue/img/arrow-up-icon.png" />

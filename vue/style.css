@@ -80,6 +80,20 @@ legend.titre {
 	min-height: 575px
 }
 
+#page_up {
+	display: block;
+	position: fixed;
+	right: 7%;
+	bottom: 10%;
+	width: 80px;
+	cursor:pointer;
+	opacity: 0.5;
+}
+
+#page_up:hover {
+	opacity: 1;
+}
+
 #footer {
 	margin: 50px auto;
 }

@@ -11,6 +11,7 @@ include_once ('php_display_fn/displayQueryList.php');
 		<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="vue/jquery/css/ui-lightness/jquery-ui-1.10.2.custom.css" type='text/css'>
 		<script type="text/javascript" src="vue/jquery/js/jquery.min.js"></script>
+		<script type="text/javascript" src="vue/jquery/js/haut_page.js"></script>
 	</head>
 
 	<body>
