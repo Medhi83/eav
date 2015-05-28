@@ -9,9 +9,9 @@ $(document).ready( function () {
 			
 	$(window).scroll(function () {
 		if ($(this).scrollTop() > 300) {
-			$('#page_up').show('slow');
+			$('#page_up').show('drop');
 		} else {
-			$('#page_up').hide('slow');
+			$('#page_up').hide('drop');
 		}
 	});
 });

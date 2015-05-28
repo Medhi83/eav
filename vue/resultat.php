@@ -12,6 +12,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
 		<script type="text/javascript" src="vue/jquery/js/jquery.min.js"></script>
+		<script type="text/javascript" src="vue/jquery/js/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="vue/jquery/js/haut_page.js"></script>
 		<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
 	</head>
@@ -92,7 +93,6 @@
 							window.alert('Les résultats ont été enregistrés avec succés!');
 						}
 						else {
-							//window.alert(reponse);
 							$("#test").html(reponse);
 						}
 				}
@@ -101,7 +101,10 @@
 			}
 			else {
 				window.alert('Vous devez être connecté à votre base de données locale pour pouvoir sauvegarder vos résultats');
-				$("#login_panel").slideToggle("slow");
+				if ($("#login_panel").css('display') == 'none') {
+					$("#login_panel").slideToggle("slow");
+				}
+				
 				return false;
 			}
 		});
