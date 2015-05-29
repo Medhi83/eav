@@ -27,6 +27,12 @@ div.dataTables_wrapper {
 	margin: 10px auto;
 }
 
+#connexion_error label {
+    display: inline-block;
+    margin-top: 10px;
+    color: #D80000;
+}
+
 .sous-champ {
 	width: 768px;
 	margin: 2em auto 0px;

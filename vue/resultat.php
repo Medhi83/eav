@@ -15,6 +15,8 @@
 		<script type="text/javascript" src="vue/jquery/js/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="vue/jquery/js/haut_page.js"></script>
 		<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
+		<script type="text/javascript" src="vue/jquery/js/jquery.validate.js"></script>
+		<script type="text/javascript" src="vue/jquery/js/jquery.additional-methods.min.js"></script>
 	</head>
 
 	<body>

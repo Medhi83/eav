@@ -22,7 +22,7 @@
 			echo '<div style = "padding: 5px">';
 			echo '<img src="vue/img/warning.png" Alt="Erreur" style="width:20px" />';
 			echo '</div>';
-			echo '<i>', $erreur_connexion,'</i>';
+			echo $erreur_connexion;
 		}
 		?>
 		</div>

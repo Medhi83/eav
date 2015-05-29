@@ -8,6 +8,22 @@
 		if (<?php echo json_encode(isset($erreur_connexion)); ?>) {
 			$("#login_panel").slideToggle("slow");		
 		}
+		
+		$('#login_form').validate({
+			errorLabelContainer: '#connexion_error',
+			rules: {
+				login: { required: true },
+				pass: { required: true }
+			},
+			messages: {
+				login: {
+					required: "Identifiant obligatoire"
+				},
+				pass: {
+					required: "Mot de passe obligatoire"
+				}
+			}
+		});
 	});
 </script>
 

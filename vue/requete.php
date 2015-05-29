@@ -12,6 +12,8 @@ include_once ('php_display_fn/displayQueryList.php');
 		<link rel="stylesheet" href="vue/jquery/css/ui-lightness/jquery-ui-1.10.2.custom.css" type='text/css'>
 		<script type="text/javascript" src="vue/jquery/js/jquery.min.js"></script>
 		<script type="text/javascript" src="vue/jquery/js/haut_page.js"></script>
+		<script type="text/javascript" src="vue/jquery/js/jquery.validate.js"></script>
+		<script type="text/javascript" src="vue/jquery/js/jquery.additional-methods.min.js"></script>
 	</head>
 
 	<body>
@@ -38,11 +40,12 @@ include_once ('php_display_fn/displayQueryList.php');
 						</p>
 					
 				</fieldset>
-				<form method="post" action="resultat.php" onsubmit="iconeChargement()">
+				<form id="query_form" method="post" action="resultat.php" onsubmit="iconeChargement()">
 					<fieldset class="sous-champ">
 						<legend>Requêtes</legend>				
 						<?php displayQueryList($arQueryArray); ?>
 						<input type="text" id="queryChoice" name="choix1" placeholder="Tapez le stable_id (ex: AAEL010576) du gène ou transcrit désiré."/>
+						<div id="query_error" style="margin: 10px auto"></div>
 					</fieldset>
 
 					<input  class="special_btn" type="submit" value="Lancer" /><br />
@@ -59,9 +62,13 @@ include_once ('php_display_fn/displayQueryList.php');
 		<script type="text/javascript">
 		$('#chargement').hide();
 
-		function iconeChargement(){
-			$('#chargement').show();		
+		function iconeChargement() {
+			if($('#query_form').valid()) {
+				$('#chargement').show();
+			}
+			return false;
 		}
+
 		//Change le nom du champ de la requête en fonction de la requete sélectionnée
 		function changeInputText(self)
 		{
@@ -82,6 +89,37 @@ include_once ('php_display_fn/displayQueryList.php');
 		<script>
 		//La taille du champ requête est ajustée à la taille de l'élément select.
 		document.getElementById('queryChoice').style.width = (document.getElementById('queryList').offsetWidth - 8) + 'px';
+		</script>
+		
+		<script>
+		$(document).ready(function(){
+			var validator = $('#query_form').validate({
+				errorLabelContainer: '#query_error',
+				rules: {
+					choix1: { required: true },
+					choix2: { required: true, number: true },
+					choix3: { required: true }
+				},
+				messages: {
+					choix1: {
+						required: "Vous devez entrer un StableID"
+						
+					},
+					choix2: {
+						required: "Vous devez entrer un nombre",
+						number: "Vous devez entrer un nombre"
+					},
+					choix3: {
+						required: "Vous devez entrer une requête SQL valide"
+					}
+				}
+			});
+			
+			$('#queryList').change(function() {
+				validator.resetForm();			
+			});
+			
+		});
 		</script>
 		
 	</body>
