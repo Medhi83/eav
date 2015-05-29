@@ -21,10 +21,10 @@ div.dataTables_wrapper {
 
 #connexion_error {
 	display: inline-block;
-	width: 30%;
 	height: inherit;
-	text-align: right;
+	text-align: center;
 	color: #D80000;
+	margin: 10px auto;
 }
 
 .sous-champ {
@@ -78,7 +78,8 @@ legend.titre {
 	width:60%;
 	text-align:center;
 	margin-top: 80px;
-	min-height: 575px
+	min-height: 575px;
+	min-width: 910px;
 }
 
 #page_up {
@@ -97,6 +98,7 @@ legend.titre {
 
 #footer {
 	margin: 50px auto;
+	min-width:1000px;
 }
 
 a {
@@ -170,6 +172,7 @@ nav.top ul {
 	background: #6bbad8;
 	position: fixed;
 	top: 0;
+	min-width:1000px;
 	z-index: 1;
 	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
             -1px 2px 20px rgba(255, 255, 255, 0.6) inset;
@@ -265,3 +268,4 @@ nav.top ul {
 	background:#2dcc70;
 	color:#FFF;
 }
+

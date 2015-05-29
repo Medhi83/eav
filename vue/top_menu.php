@@ -4,6 +4,10 @@
 			$("#login_panel").slideToggle("slow");
 			return false;
 		});
+		
+		if (<?php echo json_encode(isset($erreur_connexion)); ?>) {
+			$("#login_panel").slideToggle("slow");		
+		}
 	});
 </script>
 

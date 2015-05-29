@@ -1,13 +1,4 @@
-<div id="connexion_error">
-<?php
-if (isset($erreur_connexion)) {
-	echo '<div style = "display: inline-block; margin-right: 5px; padding: 5px">';
-	echo '<img src="vue/img/warning.png" Alt="Erreur" style="width:20px" />';
-	echo '</div>';
-	echo '<i>', $erreur_connexion,'</i>';
-}
-?>
-</div>
+
 <div id="connexion">
 	<p class="slide"><a href="#" class="slide_btn">Se connecter</a></p>
 	
@@ -23,7 +14,18 @@ if (isset($erreur_connexion)) {
 			
 			<input type="submit" name="connexion" id="submit" value="Connexion" /><br />
 			
-		</form>	
+		</form>
+
+		<div id="connexion_error">
+		<?php
+		if (isset($erreur_connexion)) {
+			echo '<div style = "padding: 5px">';
+			echo '<img src="vue/img/warning.png" Alt="Erreur" style="width:20px" />';
+			echo '</div>';
+			echo '<i>', $erreur_connexion,'</i>';
+		}
+		?>
+		</div>
 	</div>
 </div>
 
