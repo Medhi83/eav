@@ -48,7 +48,7 @@
 							</ul>
 						</p>
 				</fieldset>
-				<img src="vue/img/logo-amu.png" alt="AMU" width="600px" />
+				<img style="margin: 20px" src="vue/img/logo-amu.png" alt="AMU" />
 			</fieldset>
 		</div>
 		
