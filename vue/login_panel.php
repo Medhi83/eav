@@ -1,4 +1,3 @@
-
 <div id="connexion">
 	<p class="slide"><a href="#" class="slide_btn">Se connecter</a></p>
 	
@@ -18,14 +17,13 @@
 
 		<div id="connexion_error">
 		<?php
-		if (isset($erreur_connexion)) {
+		if (isset($sConnexionErrorMsg)) {
 			echo '<div style = "padding: 5px">';
 			echo '<img src="vue/img/warning.png" Alt="Erreur" style="width:20px" />';
 			echo '</div>';
-			echo $erreur_connexion;
+			echo $sConnexionErrorMsg;
 		}
 		?>
 		</div>
 	</div>
 </div>
-

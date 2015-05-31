@@ -1,21 +1,22 @@
 <?php
+/**
+ * Module contenant le contrôleur de database
+ **/
 
-// On charge la gestion du login
+include_once('modele/showTables.php');
+
+// Chargement de la gestion du login
 include_once('controleur/login_manager.php');
 
-//database process
-try
-{	
-	include_once('modele/showTables.php');
-	$db_tables = showTables();
-	
-}
-catch (Exception $e)
-{
-	$erreur_sql = "Erreur : ".$e->getMessage();
-	include_once('vue/SQLerror.php');
-	exit;
-}
+// database processing
 
-// On affiche la page (vue)
+if (isset($_POST['tableNameToDelete']))
+{
+	$sql = 'DROP TABLE ' .   trim($opdoConnexionToUserDb->quote($_POST['tableNameToDelete']), "'") . ";";
+	$opdoConnexionToUserDb->exec($sql);
+}
+$arDbTables = showTables();
+
+
+// Chargement de la vue de database
 include_once('vue/database.php');

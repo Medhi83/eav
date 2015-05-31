@@ -1,5 +1,9 @@
 <?php
 /**
+ * Module contenant la fonction de création de la string contenant les résultats sous forme csv.
+ * */
+
+/**
  * Crée une string contenant les résultats au format CSV.
  * @param  object $reponse L'objet PDO contenant les résultats.
  * */
@@ -8,7 +12,7 @@ function createCSVResultsString($arReponse)
 	$sResultsCSV = '';
 	$bIsHeaderDone = false;
 	$iResultNumber = 0;
-	$delimiter = '\t';
+	$sDelimiter = '\t';
 	foreach ($arReponse as $arDonnees)
 	{
 		if ($bIsHeaderDone === false)
@@ -18,7 +22,7 @@ function createCSVResultsString($arReponse)
 			{
 				if (gettype($cle) == 'string')
 				{
-					$sResultsCSV .= $delimiter . $cle;
+					$sResultsCSV .= $sDelimiter . $cle;
 				}
 			}
 			$sResultsCSV .= '\n';
@@ -30,7 +34,7 @@ function createCSVResultsString($arReponse)
 		{
 			if (gettype($cle) == 'string')
 			{
-				$sResultsCSV .= $delimiter . $element;
+				$sResultsCSV .= $sDelimiter . $element;
 			}
 		}		
 		$sResultsCSV .= '\n';

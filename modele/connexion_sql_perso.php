@@ -1,11 +1,17 @@
 <?php
+/**
+ * Module contenant la fonction de connexion à la base de donnée locale de l'utilisateur
+ * */
 
-// Connexion à la base de données de l'utilisateur
-function connexion_sql_perso($login, $pass) {
-	$bdd = new PDO('mysql:host=dbs-perso.luminy.univmed.fr;dbname='.$login.';charset=utf8', $login, $pass);
-	
-	
-	return $bdd;
+/**
+ * Etablit la connexion avec la base de données de l'utilisateur et renvoie l'objet PDO associé.
+ * @return PDOobject $opdoConnexionToUserDb L'objet PDO contenant la connexion.
+ * */
+function connexion_sql_perso($login, $pass) 
+{
+	// officiel (fac):
+	//$opdoConnexionToUserDb = new PDO('mysql:host=dbs-perso.luminy.univmed.fr;dbname='.$login.';charset=utf8', $login, $pass);
+	$opdoConnexionToUserDb = new PDO('mysql:host=localhost;dbname=eav', $login, '3uxveGeTN28J9fnJ');
+	return $opdoConnexionToUserDb;
 }
-
-
+?>

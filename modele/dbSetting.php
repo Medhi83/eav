@@ -1,10 +1,13 @@
 <?php
-
+/**
+ * Module contenant la fonction de setting de la base de données..
+ * */
+ 
 include_once('isDbExists.php');
 
 /**
- * Sette la database en SESSION. Si elle n'est pas spécifiée, redirige.
- * */
+ * Sette la database en SESSION. ou la unset si demandé.
+ **/
 function dbSetting()
 {
 	if (isset($_POST['deco_bdd']) and $_POST['deco_bdd'] == 'X'){

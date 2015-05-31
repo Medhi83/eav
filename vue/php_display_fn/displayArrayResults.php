@@ -7,34 +7,51 @@
 
 function displayArrayResults($array_results, $table_id = 'results')
 {
-	echo '<table id="'.$table_id.'" class="display">';
-	$i = 0;
+	if (isset($array_results[0]))
+	{
+		echo '<table id="'.$table_id.'" class="display">';
+		$i = 0;
 
-	echo '<thead><tr>';
-	echo '<th>n°</th>';
-	foreach (array_keys($array_results[0]) as $key){
-		if (gettype($key) == 'string') {
-			echo '<th>', $key, '</th>';
-		}
-	}
-	echo '</tr></thead>';
-
-	echo '<tbody>';
-	foreach ($array_results as $key => $value) {
-
-		echo '<tr>';
-		echo '<td>', ($i + 1), '</td>';
-		foreach ($array_results[$i] as $key => $value) {
+		echo '<thead><tr>';
+		echo '<th>n°</th>';
+		foreach (array_keys($array_results[0]) as $key){
 			if (gettype($key) == 'string') {
-				echo '<td>', $value, '</td>';
+				echo '<th>', $key, '</th>';
 			}
 		}
-		echo '</tr>';
-		$i += 1;
+		if ($table_id == 'tables')
+		{
+			echo '<th></th>';
+		}
+		echo '</tr></thead>';
+
+		echo '<tbody>';
+		foreach ($array_results as $key => $value) {
+
+			echo '<tr>';
+			echo '<td>', ($i + 1), '</td>';
+			foreach ($array_results[$i] as $key => $value) {
+				if (gettype($key) == 'string') {
+					echo '<td>', $value, '</td>';
+				}
+			}
+		if ($table_id == 'tables')
+		{?>
+			<td>
+				<form method=POST action="database.php">
+				<input type="hidden" value="<?php echo $array_results[$i][0]; ?>" name="tableNameToDelete" />
+				<input type="submit" class="deco_btn" value="X" title="Supprimer cette table" style="width: 5ex;" />
+				</form>
+			</td>
+		<?php
+		}
+			echo '</tr>';
+			$i += 1;
+		}
+		echo '</tbody></table>';
+		
 	}
-	echo '</tbody></table>';
-	
-	if ($i === 0)
+	else
 	{
 		echo "Cette requête n'a donné aucun résultat";
 	}

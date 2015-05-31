@@ -1,12 +1,19 @@
 <?php
-
-//Retourne les tables de la base de données locale
+/**
+ * Module contenant la fonction de recherche des tables dans une base de données de l'utilisateur
+ * */
+ 
+/**
+ * Retourne un array contenant les tables de la base de données de l'utilisateur
+ * @return array $arResults Le tableau contenant les tables
+ * */
 function showTables() {
-	global $bdd;
+	global $opdoConnexionToUserDb;
 
-	$req = $bdd->prepare('SHOW TABLES');
-	$req->execute();
-	$result = $req->fetchAll();
+	$spdoReq = $opdoConnexionToUserDb->prepare('SHOW TABLES');
+	$spdoReq->execute();
+	$arResult = $spdoReq->fetchAll();
 
-	return $result;		
+	return $arResult;		
 }
+?>

@@ -14,13 +14,14 @@
 		<!-- Menu -->
 		<?php include_once ('top_menu.php')?>
 		<!-- Fin du Menu -->
-		
+		<?php include_once('noScriptMessage.php'); ?>
+
 		<div id="page">
 			<fieldset>
 				<legend class="titre">Erreur</legend>
 				<div class="error_field">
 					<p>Il y a un problème!</p>
-					<p><?php echo $erreur_sql; ?></p>
+					<p><?php echo $sErreur; ?></p>
 				
 				</div>
 			</fieldset>

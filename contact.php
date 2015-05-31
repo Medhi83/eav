@@ -1,12 +1,12 @@
 <?php
-// Contrôleur global de la page resultat
+// Contrôleur global de la page contact.
 
 try
 {
 	session_start();
 
-	// Appel du contrôleur de resultat.
-	include_once('controleur/resultat.php');
+	// Appel du controleur de contact.
+	include_once('controleur/contact.php');
 }
 catch (Exception $e)
 {

@@ -1,6 +1,10 @@
 <?php
 /**
- * Sette la requête en SESSION. Si elle n'a pas été spécifiée, redirige.
+ * Module contenant la fonction de setting d ela requête.
+ * */
+
+/**
+ * Sette la requête en SESSION.
  * */
 function querySetting()
 {

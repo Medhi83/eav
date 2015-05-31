@@ -15,7 +15,8 @@
 		<!-- Menu -->
 		<?php include ('top_menu.php')?>
 		<!-- Fin du Menu -->
-		
+		<?php include_once('noScriptMessage.php'); ?>
+
 		<div id="page">
 			<img src="vue/img/brokendna.png" alt="Erreur 404" width="600" style="margin-top:50px">
 		</div>

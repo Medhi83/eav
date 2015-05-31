@@ -1,9 +1,19 @@
 <?php
+// Controleur de la vue 404. Chemin innexistant.
 
+try
+{
+	session_start();
 
-session_start();
-// On charge la gestion du login
-include_once('controleur/login_manager.php');
+	// Chargement du gestionnaire de login.
+	include_once('controleur/login_manager.php');
 
-//affichage de la page (vue)
-include_once('vue/404error.php');
+	// Chargement de la vue.
+	include_once('vue/404error.php');	
+}
+catch (Exception $e)
+{
+	$sErreur = "Erreur : " . $e->getMessage();
+	include_once('vue/error.php');
+	exit;
+}

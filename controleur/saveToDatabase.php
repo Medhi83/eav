@@ -1,8 +1,10 @@
 <?php
-
+/**
+ * Module contenant le contrôleur de saveToDatabase -> cette page est chargée en ajax par la vue resultat
+ **/
+ 
 session_start();
-include_once('../modele/createTable.php');
-include_once('../modele/insertData.php');
+include_once('../modele/saveResultsOnUserDb.php');
 include_once('../modele/connexion_sql_perso.php');
 
 //Gère et appel la fonction pour enregistrer les résultats dans la base de données de l'utilisateur connecté
@@ -10,23 +12,35 @@ include_once('../modele/connexion_sql_perso.php');
 if (isset($_POST['action']) and $_POST['action'] == 'save'){
 	try {
 		
-		$bdd = connexion_sql_perso($_SESSION['login'], $_SESSION['pass']);
+		$opdoConnexionToUserDb = connexion_sql_perso($_SESSION['login'], $_SESSION['pass']);
+		
+		if ($_POST['table_name'] !== preg_replace('#[^0-9a-z_]+#i', '-', $_POST['table_name']))
+		{
+			echo 2;
+			exit;
+		}		
 	
+		$spdoTablesBeing = $opdoConnexionToUserDb->query('SHOW TABLES;');
 		//On regarde si une table avec ce nom existe déjà
+		while ($reponse = $spdoTablesBeing->fetch())
+		{
+			foreach ($reponse as $tableBeing)
+			{
+				//si oui: l'opération est annulée
+				if ($tableBeing == $_POST['table_name'])
+				{
+					echo 1;
+					exit;
+				}
+			}
+		}
 
-			//si oui: On demande à l'utilisateur s'il souhaite l'écraser
-
-				//si oui: On supprime la table et on en crée une avec le même nom (retour à la 1ere condition en cas non!)
-
-				//si non: On annule (ou retour au choix du non)
-
-			//si non: On crée la table
-			createTable($_SESSION["current_results"], $_POST["table_name"]);
+		//si non: On crée la table
+		createTable($_SESSION["current_results"], $_POST["table_name"]);
 
 		//On ajoute les données dans la table!
 		insertData($_SESSION["current_results"],$_POST["table_name"]);
-		
-		
+				
 		echo 0; // Enfin on retourne zero si tout s'est bien passé =)
 	}
 	catch(Exception $erreur) {

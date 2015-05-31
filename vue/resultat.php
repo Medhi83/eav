@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>EAV - Accueil</title>
+		<title>EAV - Résultats</title>
 		<link rel="stylesheet" type="text/css" href="vue/style.css" />
 		<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
@@ -23,6 +23,8 @@
 		<!-- Menu -->
 		<?php include_once ('top_menu.php')?>
 		<!-- Fin du Menu -->
+		<?php include_once('noScriptMessage.php'); ?>
+		
 		
 		<div id="page">
 			<fieldset>
@@ -41,12 +43,15 @@
 				</fieldset>
 				
 			</fieldset>
-			<button id = "sauver" class="special_btn" style="width:234px; font-size:15px" type="button" title="Enregistre le tableau de résultats dans la base de données de l'utilisateur">Sauvegarder</button>
-			<form action="controleur/downloadCSV.php" method="POST" TARGET=_BLANK style="display:inline-block;margin-left: 1em">
-				<input type="hidden" value="<?php echo htmlentities(serialize($_SESSION["current_results"])); ?>" name="csvString" />
+
+			<button class="special_btn" style="width:234px; font-size:15px" title="Faire une nouvelle requête" onClick="document.location.href='requete.php';">Nouvelle Requête</button>
+			<form action="controleur/downloadCSV.php" method="POST" TARGET=_BLANK style="display:inline-block;margin-left: 1em; margin-right: 1em">
+				<input type="hidden" value="<?php echo $asResults; ?>" name="serialized_results" />
 				<input type="hidden" value="<?php echo $_SESSION['db']; ?>" name="bd" />
-				<input class="special_btn" style="width:234px; font-size:15px" type="submit" value="Télécharger au format CSV"/>
+				<input class="special_btn" style="width:234px; font-size:15px" type="submit" value="Télécharger au format CSV" />
 			</form>
+			<button id = "sauver" class="special_btn" style="width:234px; font-size:15px" type="button" title="Enregistre le tableau de résultats dans la base de données de l'utilisateur">Sauvegarder</button>
+
 			<p id="test" class="error"></p>
 			
 		</div>
@@ -85,33 +90,60 @@
 				var date = new Date();
 				var table_name = window.prompt('Entrer le nom de la table dans la base de données', 'eav_' + bdd + '_date_' + date.getDate() + '_' + date.getMonth() + '_' + date.getFullYear() + '_' + date.getHours() + '_' + date.getMinutes() + '_' + date.getSeconds());
 
-				$.ajax({ // Envoie les resultats a saveToDatabase.php avec Ajax en methode POST (Call back)
-				url  : 'controleur/saveToDatabase.php',
-				type : 'POST',
-				data : {action:'save', table_name:table_name},
-				dataType: 'html',
-				success: function(reponse){
-						if (reponse == 0) {
-							window.alert('Les résultats ont été enregistrés avec succés!');
-						}
-						else {
-							$("#test").html(reponse);
-						}
+				if (table_name)
+				{
+					$.ajax({ // Envoie les resultats a saveToDatabase.php avec Ajax en methode POST (Call back)
+									url  : 'controleur/saveToDatabase.php',
+									type : 'POST',
+									data : {action:'save', table_name:table_name},
+									dataType: 'html',
+									success: function(reponse){
+											if (reponse == 0) {
+												window.alert('Les résultats ont été enregistrés avec succés!');
+											}
+											else if (reponse == 1)
+											{
+												window.alert("Une table portant ce nom existe déjà, l\'opération a été annulée.");
+											}
+											else if (reponse == 2)
+											{
+												window.alert("Le nom de la table est invalide, évitez les caractères spéciaux et les tirets.");
+											}
+											else if (reponse == 3)
+											{
+												window.alert("Il semble y avoir eu un problème lors de l'insertion des résultats. Cet incident sera reporté.");
+											}
+											else if (reponse == 4)
+											{
+												window.alert("Vous ne pouvez pas sauvegarder une table vide.");
+											}
+											else {
+												//window.alert(reponse);
+												window.alert("Une erreur inconnue est apparue, si vous ne savez pas pourquoi, veuillez noter le message apparu en rouge sous le tableau et contacter un administrateur");
+												$("#test").html(reponse);
+											}
+									}
+							
+									});
 				}
-		
-				});
+				else
+				{
+					window.alert('Opération annulée');
+				}
+				
 			}
 			else {
 				window.alert('Vous devez être connecté à votre base de données locale pour pouvoir sauvegarder vos résultats');
 				if ($("#login_panel").css('display') == 'none') {
 					$("#login_panel").slideToggle("slow");
 				}
-				
 				return false;
 			}
 		});
 		
 	} );
+	
+
 	</script>
 	</body>
 </html>

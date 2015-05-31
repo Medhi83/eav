@@ -16,6 +16,8 @@
 		<!-- Menu -->
 		<?php include_once ('top_menu.php')?>
 		<!-- Fin du Menu -->
+		<!-- test js -->
+		<?php include_once('noScriptMessage.php'); ?>
 		
 		<div id="page">
 			<img src="vue/img/Logo-eav.png" alt="EAV" width="600" style="margin-top:80px;">

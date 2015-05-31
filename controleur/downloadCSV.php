@@ -1,5 +1,9 @@
 <?php
-if (isset($_POST['csvString']) and (isset($_POST['bd'])))
+/**
+ * Module contenant le contrôleur de downloadCSV -> cette page est chargée par un formulaire de téléchargement dans résultat
+ **/
+
+if (isset($_POST['serialized_results']) and (isset($_POST['bd'])))
 {
 	include_once('../modele/getCSV.php');
 	header('Content-Type: application/octet-stream');
@@ -7,7 +11,7 @@ if (isset($_POST['csvString']) and (isset($_POST['bd'])))
 	header('Expires: 0');	
 	header('Cache-Control: must-revalidate');
 	header('Pragma: public');
-	$arReponse = unserialize($_POST['csvString']);
+	$arReponse = unserialize($_POST['serialized_results']);
 	$sReponseCSV = createCSVResultsString($arReponse);
 	echo $sReponseCSV;
 }

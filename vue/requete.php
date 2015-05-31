@@ -6,7 +6,7 @@ include_once ('php_display_fn/displayQueryList.php');
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>EAV - Accueil</title>
+		<title>EAV - Requête</title>
 		<link rel="stylesheet" type="text/css" href="vue/style.css" />
 		<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="vue/jquery/css/ui-lightness/jquery-ui-1.10.2.custom.css" type='text/css'>
@@ -20,7 +20,8 @@ include_once ('php_display_fn/displayQueryList.php');
 		<!-- Menu -->
 		<?php include_once ('top_menu.php')?>
 		<!-- Fin du Menu -->
-		
+		<?php include_once('noScriptMessage.php'); ?>
+
 		<div id="page">
 			<fieldset>
 			<legend class="titre">Lancer une requête</legend>
@@ -62,13 +63,12 @@ include_once ('php_display_fn/displayQueryList.php');
 		<script type="text/javascript">
 		$('#chargement').hide();
 
-		function iconeChargement() {
+		function iconeChargement(){
 			if($('#query_form').valid()) {
 				$('#chargement').show();
 			}
-			return false;
+			return false;		
 		}
-
 		//Change le nom du champ de la requête en fonction de la requete sélectionnée
 		function changeInputText(self)
 		{
@@ -82,7 +82,7 @@ include_once ('php_display_fn/displayQueryList.php');
 					inputText.placeholder = xmlhttp.responseText;
 			  	}
 			}
-			xmlhttp.open("GET", "modele/getQueryTip.php?query=" + userChoice, true);
+			xmlhttp.open("GET", "controleur/getQueryTip.php?query=" + userChoice, true);
 			xmlhttp.send();
 		}
 		</script>
@@ -90,7 +90,6 @@ include_once ('php_display_fn/displayQueryList.php');
 		//La taille du champ requête est ajustée à la taille de l'élément select.
 		document.getElementById('queryChoice').style.width = (document.getElementById('queryList').offsetWidth - 8) + 'px';
 		</script>
-		
 		<script>
 		$(document).ready(function(){
 			var validator = $('#query_form').validate({
@@ -98,18 +97,37 @@ include_once ('php_display_fn/displayQueryList.php');
 				rules: {
 					choix1: { required: true },
 					choix2: { required: true, number: true },
-					choix3: { required: true }
+					choix3: { required: true },
+					choix4: { required: true },
+					choix5: { required: true },
+					choix6: { required: true },
+					choix7: { required: true },
+					choix8: { required: true }
 				},
 				messages: {
 					choix1: {
 						required: "Vous devez entrer un StableID"
-						
 					},
 					choix2: {
 						required: "Vous devez entrer un nombre",
 						number: "Vous devez entrer un nombre"
 					},
 					choix3: {
+						required: "Vous devez entrer un StableID"
+					},
+					choix4: {
+						required: "Vous devez entrer un StableID"
+					},
+					choix5: {
+						required: "Vous devez entrer un StableID"
+					},
+					choix6: {
+						required: "Vous devez entrer un StableID"
+					},
+					choix7: {
+						required: "Vous devez entrer un StableID"
+					},
+					choix8: {
 						required: "Vous devez entrer une requête SQL valide"
 					}
 				}
@@ -120,7 +138,6 @@ include_once ('php_display_fn/displayQueryList.php');
 			});
 			
 		});
-		</script>
-		
+		</script>		
 	</body>
 </html>

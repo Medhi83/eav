@@ -1,4 +1,7 @@
 <?php
+/**
+ * Module contenant la fonction de traitement des requêtes pour l'appel de la fonction nécessaire
+ * */
 
 include_once('doQuery_choix.php');
 
@@ -9,8 +12,8 @@ include_once('doQuery_choix.php');
  * */
 function parseQueryChoice($connexion)
 {
-	$functionForQuery = "return doQuery_" . $_SESSION['radio'] . "(\$connexion);";
-	$returned = eval($functionForQuery);
-	return $returned;
+	$sFunctionForQuery = "return doQuery_" . $_SESSION['radio'] . "(\$connexion);";
+	$spdoResults = eval($sFunctionForQuery);
+	return $spdoResults;
 }
 ?>

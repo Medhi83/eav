@@ -1,20 +1,19 @@
 <?php
+/**
+ * Module contenant le contrôleur de index
+ **/
 
-try
-{
-	include_once('modele/createDbArray.php');
-	$arDbArray = createDbArray();
-}
-catch (Exception $e)
-{
-	include_once('controleur/login_manager.php');
-	$erreur_sql = "Erreur : ".$e;
-	include_once('vue/SQLerror.php');
-	exit;
-}
+include_once('modele/createDb.php');
 
-// On charge la gestion du login
+// Chargement de la gestion du login
 include_once('controleur/login_manager.php');
 
-// On affiche la page (vue)
+// index processing
+$arDbArray = createDbArray();
+if (isset($_POST['delAllHistory']))
+{
+	unset($_SESSION['history']);
+}
+
+// Chargement de la vue de index
 include_once('vue/index.php');

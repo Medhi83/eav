@@ -1,5 +1,5 @@
 <?php
-	include_once ('php_display_fn/displayArrayResults.php');
+include_once('php_display_fn/displayArrayResults.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,17 +21,24 @@
 		<!-- Menu -->
 		<?php include_once ('top_menu.php')?>
 		<!-- Fin du Menu -->
+		<?php include_once('noScriptMessage.php'); ?>
 		
 		<div id="page">
 			<fieldset>
 				<legend class="titre">Ma base de données</legend>
+				<div class="info" style="margin:10px 20px"> Astuce : Séléctioner une table à l'aide d'un <b>clic gauche</b> vous permet d'afficher son contenu. </div>
 				<fieldset class="sous-champ">
 					<legend>Mes tables</legend>
-					<?php displayArrayResults($db_tables); ?>
+					<?php displayArrayResults($arDbTables, 'tables'); ?>
 				</fieldset>
 				<fieldset id="content" class="sous-champ">
 					<p>Aucune table séléctionée</p>
 				</fieldset>
+				<form action="controleur/downloadCSV.php" method="POST" TARGET=_BLANK style="display:inline-block;margin-left: 1em; margin-right: 1em">
+					<input id="ar_results" type="hidden" value="" name="serialized_results" />
+					<input id="bd_name" type="hidden" value="" name="bd" />
+					<input class="special_btn" style="width:234px; font-size:15px" type="submit" value="Télécharger au format CSV" />
+				</form>
 			</fieldset>
 		</div>
 
@@ -41,7 +48,7 @@
 
 		<script type="text/javascript">
 		$(document).ready( function () {
-			var table = $('#results').DataTable({
+			var table = $('#tables').DataTable({
 				"scrollX": true,
 				"language": {
 					"lengthMenu": "Afficher _MENU_ éléments par page",
@@ -61,7 +68,7 @@
 				}
 			});
 			
-			$('#results tbody').on( 'click', 'tr', function () {
+			$('#tables tbody').on( 'click', 'tr', function () {
 				if ( $(this).hasClass('selected') ) {
 					$(this).removeClass('selected');
 					
@@ -72,6 +79,8 @@
 					$(this).addClass('selected');
 
 					var selected_table = table.row( this ).data()[1];
+					$('#bd_name').val(selected_table);
+					
 					
 					$.ajax({
 						type : 'POST',
@@ -80,7 +89,7 @@
 						dataType : 'html',
 						success: function(html_content){
 							$('#content').html(html_content);
-							
+
 							$('#tableContent').DataTable({
 								"scrollX": true,
 								"language": {
@@ -102,10 +111,22 @@
 							});
 						}
 					});
+					
+					$.ajax({
+						type : 'POST',
+						data : {action : 'display', table_name : selected_table },
+						url  : 'controleur/echoTableContent.php',
+						dataType : 'html',
+						success: function(html_content){
+							$('#ar_results').val(html_content);
+						}				
+						
+					});
 				}
 			});
 			
 		} );
+		
 		</script>
 	</body>
 </html>

@@ -1,12 +1,12 @@
 <?php
-// Contrôleur global de la page resultat
+// Contrôleur global de la page historique
 
 try
 {
 	session_start();
 
-	// Appel du contrôleur de resultat.
-	include_once('controleur/resultat.php');
+	// Appel du contrôleur de l'historique
+	include_once('controleur/historique.php');
 }
 catch (Exception $e)
 {

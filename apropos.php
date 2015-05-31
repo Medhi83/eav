@@ -1,12 +1,11 @@
 <?php
-// Contrôleur global de la page resultat
-
+// Contrôleur global de la page apropos.
 try
 {
 	session_start();
 
-	// Appel du contrôleur de resultat.
-	include_once('controleur/resultat.php');
+	// Appel du controleur de apropos.
+	include_once('controleur/apropos.php');
 }
 catch (Exception $e)
 {

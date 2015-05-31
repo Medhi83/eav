@@ -224,6 +224,29 @@ nav.top ul {
 	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7), -1px 2px 20px rgba(0, 0, 0, 0.6) inset; 
 }
 
+.view_btn {
+	background:url(img/eye71.png);
+	background-repeat: no-repeat;
+    	background-position: center; 
+	background-color: gray;
+	padding: 8px 4px;
+	border: none;
+	border-radius: 5px;
+	border-radius: 5px;
+	font-size: 1.0em;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+	margin: 10px auto;
+}
+.view_btn:hover {
+	background:url(img/eye71.png);
+	background-repeat: no-repeat;
+    	background-position: center; 
+	background-color: #6bbad8;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7), -1px 2px 20px rgba(255, 255, 255, 0.6) inset; 
+}
+
 #login_panel #submit {
 	background: gray;
 	padding: 8px 4px;
@@ -274,4 +297,3 @@ nav.top ul {
 	background:#2dcc70;
 	color:#FFF;
 }
-

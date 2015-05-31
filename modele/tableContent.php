@@ -1,12 +1,20 @@
 <?php
+/**
+ * Module contenant la fonction de recherche du contenu d'une table de l'utilisateur
+ * */
+ 
+/**
+ * Retourne un array contenant le contenu d'une table de la base de données de l'utilisateur
+ * @param string $sTableName
+ * @return array $arResults Le contenu de la table
+ * */
+function tableContent($sTableName) {
+	global $opdoConnexionToUserDb;
 
-//Retourne le contenu d'une table locale
-function tableContent($table_name) {
-	global $bdd;
+	$sTableName = trim($opdoConnexionToUserDb->quote($sTableName), "'");
+	$spdoReq = $opdoConnexionToUserDb->query("SELECT * FROM " . $sTableName);
+	$arResult = $spdoReq->fetchAll();
 
-	$req = $bdd->prepare("SELECT * FROM $table_name");
-	$req->execute();
-	$result = $req->fetchAll();
-
-	return $result;		
+	return $arResult;		
 }
+?>
