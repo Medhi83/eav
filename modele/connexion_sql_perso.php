@@ -10,8 +10,7 @@
 function connexion_sql_perso($login, $pass) 
 {
 	// officiel (fac):
-	//$opdoConnexionToUserDb = new PDO('mysql:host=dbs-perso.luminy.univmed.fr;dbname='.$login.';charset=utf8', $login, $pass);
-	$opdoConnexionToUserDb = new PDO('mysql:host=localhost;dbname=eav', $login, '3uxveGeTN28J9fnJ');
+	$opdoConnexionToUserDb = new PDO('mysql:host=dbs-perso.luminy.univmed.fr;dbname='.$login.';charset=utf8', $login, $pass);
 	return $opdoConnexionToUserDb;
 }
 ?>
